@@ -83,6 +83,11 @@ var data = {
             document.getElementById("totalbtc").innerHTML = (Math.round(newval*100000000)/100000000) + " &#579";
             document.getElementById("totalusd").innerHTML = "$" + (Math.round(newval * this.usd * 100)/100);
         }
+        if (document.getElementById("earned")) {
+            document.getElementById("earned").innerHTML = "$" + (Math.round(this.usd * newval*100)/100);
+            var perc = 100-Math.round(((this.usd * newval)/(parseFloat(document.getElementById("spent").innerHTML.substring("1"))))*100);
+            document.getElementById("left").innerHTML = "$" + (Math.round((parseFloat(document.getElementById("spent").innerHTML.substring("1")) - (this.usd * newval))*100)/100) + " (" + perc + "%)";
+        }
     },
     set usdvalue(newval) {
         this.usd = newval;
@@ -91,7 +96,7 @@ var data = {
         if (document.getElementById("btcprice")){
             document.getElementById("btcprice").innerHTML = "$" + newval;
         }
-        if (document.getElementById("coinbasebalancebtc")){
+        if (document.getElementById("coinbasebalanceusd")){
             document.getElementById("coinbasebalanceusd").innerHTML = "$" + (Math.round(this.cb * newval*100)/100);
         }
         if (document.getElementById("nicehashearningsusd")){
@@ -111,6 +116,11 @@ var data = {
         }
         if (document.getElementById("paybackprogress")){
             createProgressBars();
+        }
+        if (document.getElementById("earned")) {
+            document.getElementById("earned").innerHTML = "$" + (Math.round(this.btc * newval*100)/100);
+            var perc = 100-Math.round(((this.btc * newval)/(parseFloat(document.getElementById("spent").innerHTML.substring("1"))))*100);
+            document.getElementById("left").innerHTML = "$" + (Math.round((parseFloat(document.getElementById("spent").innerHTML.substring("1")) - (this.btc * newval))*100)/100)  + "(" + perc + "%)";;
         }
     },
     set electricity(newval) {
@@ -566,28 +576,25 @@ function loadGear() {
     var curTotal = 0.0;
     cur.forEach(function(gear) {
         var split = gear.split(",");
-        var text = split[0] + " ($" + split[1] + ")<br>";
+        var text = "<br>" + split[0] + " ($" + split[1] + ")";
         curTotal += parseFloat(split[1]);
         curP.innerHTML += text;
     });
-    curP.innerHTML += "<br>Total ($" + curTotal + ")";
+    document.getElementById("spent").innerHTML = "$" + + Math.round(curTotal*100)/100;
 
     var futureGear = readTextFile("/btc/components/future.dat");
     var futP = document.getElementById("futuregear");
 
     var fut = futureGear.split(/\r?\n|\r/);
-    var futTotal = 0.0;
     fut.forEach(function(gear) {
         if (gear == "") {
             futP.innerHTML += "<br>";
         } else {
             var split = gear.split(",");
             var text = split[0] + " ($" + split[1] + ")<br>";
-            futTotal += parseFloat(split[1]);
             futP.innerHTML += text;
         }
     });
-    futP.innerHTML += "<br>Total ($" + Math.round(futTotal*100)/100 + ")";
 }
 function readTextFile(file){
     var rawFile = new XMLHttpRequest();
