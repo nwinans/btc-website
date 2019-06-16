@@ -9,9 +9,9 @@
         <meta name="author" content="Nick Winans">
         
         <!-- CSS -->
-        <link rel="stylesheet" href="/btc/css/style.css?v=1.5"> 
+        <link rel="stylesheet" href="/btc/css/style.css?v=2.0"> 
         <!-- JS Scripts -->
-        <script src="/btc/js/scripts.js?v=1.5"></script>
+        <script src="/btc/js/scripts.js?v=2.0"></script>
         <script src="/btc/js/sha256.js"></script>
         <script src="/btc/js/canvasjs.min.js"></script>
 
@@ -25,9 +25,10 @@
     </head>
 
     <body>
-        <div class="header sticky">
+        <div class="header sticky" style="flex-grow: 1">
             <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
             <h1 id="title" class="headertext">Dashboard</h1>
+            <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshData()" class="refreshtext">30s</h1>
         </div>
 
         <div class="side-nav" id="side-nav-container">
@@ -38,7 +39,7 @@
             <div class="navlinks">
                 <nav>
                     <ul>
-                        <li onclick="location.href='/btc/'"><img width="32px" height="32px" src="/btc/images/homeselected.svg"></img><span class="nav">Dashboard</span></li>                        
+                        <li class="selected" onclick="location.href='/btc/'"><img width="32px" height="32px" src="/btc/images/homeselected.svg"></img><span class="nav">Dashboard</span></li>                        
                         <li onclick="location.href='/btc/coinbase'"><img width="32px" height="32px" src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
                         <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px" src="/btc/images/mining.svg"></img><span class="nav">Nicehash</span></li>
                         <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
@@ -49,31 +50,32 @@
             </div>
         </div>
 
-        <div class="wrapper">       
+        <div class="wrapper">
             <div class="contentleft">
-                <div class="card">
+                <div class="card-snapshot">
                     <div class="container">
-                        <h3 id="pricetitle">Overall Stats</h3>
-                        <table>
-                            <tr>
-                                <th class="title">BTC Price</th>
-                                <td id="btcprice">Loading</td>
-                            </tr>
-                            <tr>
-                            <th class="title">Total USD</th>
-                                <td id="totalusd">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">Total BTC</th>
-                                <td id="totalbtc">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">Time till refresh</th>
-                                <td id="ttr">0s</td>
-                            </tr>
-                        </table>
+                        <p class="title card-snapshot-title">BTC Price</p>
+                        <h2 class="card-snapshot-data" id="btcprice">Loading</h2>
                     </div>
                 </div>
+            </div>
+            <div class="contentcenter">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">USD</p>
+                        <h2 class="card-snapshot-data" id="totalusd">Loading</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="contentright">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Bitcoin</p>
+                        <h2 class="card-snapshot-data" id="totalbtc">Loading</h2>
+                    </div>
+                </div>
+            </div>      
+            <div class="dataleft">
                 <div class="card">
                     <div class="container">
                         <h3 id="nhstatstitle">Nicehash Miners</h3>
@@ -100,71 +102,44 @@
                         </table>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="container">
+                        <h3 id="nhprofithistorytitle">Profitability History</h3>
+                        <div id="24hrChartContainerProfit" style="height: 250px; z-index: 500;"></div>
+                    </div>
+                </div>
             </div>
-            <div class="contentright">
-                <div class="card"> 
+            <div class="dataright">
+                <div class="card-snapshot">
                     <div class="container">
-                        <h3 id="cbtitle">Coinbase Balance</h3>
-                        <table>
-                            <tr>
-                                <th class="title">USD</th>
-                                <td id="coinbasebalanceusd">Loading</td>
-                            </tr>
-                            <tr>
-                            <th class="title">BTC</th>
-                                <td id="coinbasebalancebtc">Loading</td>
-                            </tr>
-                        </table>
+                        <p class="title card-snapshot-title">Nicehash USD/Day</p>
+                        <h2 class="card-snapshot-data" id="nicehashdailyusdprofit">Loading</h2>
+                    </div>
+                    <div class="container">
+                        <p class="title card-snapshot-title second">Nicehash BTC/Day</p>
+                        <h2 class="card-snapshot-data" id="nicehashdailybtcprofit">Loading</h2>
                     </div>
                 </div>
-                <div class="card"> 
+                <div class="card-snapshot">
                     <div class="container">
-                        <h3 id="nhitle">Nicehash Details</h3>
-                        <table>
-                            <tr>
-                                <th class="title">USD</th>
-                                <td id="nicehashearningsusd">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">BTC</th>
-                                <td id="nicehashearningsbtc">Loading</td>
-                            </tr>
-                            <tr>
-                               <td><br></td>
-                            </tr>
-                            <tr>
-                                <th class="title">USD/Day</th>
-                                <td id="nicehashdailyusdprofit">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">BTC/Day</th>
-                                <td id="nicehashdailybtcprofit">Loading</td>
-                            </tr>
-                            
-                        </table>
+                        <p class="title card-snapshot-title">Nicehash USD</p>
+                        <h2 class="card-snapshot-data" id="nicehashearningsusd">Loading</h2>
+                    </div>
+                    <div class="container">
+                        <p class="title card-snapshot-title second">Nicehash BTC</p>
+                        <h2 class="card-snapshot-data" id="nicehashearningsbtc">Loading</h2>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card-snapshot">
                     <div class="container">
-                        <h3>Payback Progress</h3>
-                        <div class="wrapper">
-                            <div class="contentleft">
-                                <progress style="display: none;" id="paybackprogress"></progress>
-                                <h5 style="display: none;" id="paybacktitle" class="center">Progress towards</h5>
-                            </div>
-                            <div class="contentright">
-                                <progress style="display: none;" id="totalpaybackprogess"></progress>
-                                <h5 style="display: none;" id="totalpaybacktitle" class="center">Total Progress</h5>
-                            </div>
-                        </div>
+                        <p class="title card-snapshot-title">Coinbase USD</p>
+                        <h2 class="card-snapshot-data" id="coinbasebalanceusd">Loading</h2>
+                    </div>
+                    <div class="container">
+                        <p class="title card-snapshot-title second">Coinbase BTC</p>
+                        <h2 class="card-snapshot-data" id="coinbasebalancebtc">Loading</h2>
                     </div>
                 </div>
-                <div class="card">
-                        <div class="container">
-                            <h3 id="nhprofithistorytitle">Profitibility History</h3>
-                            <div id="24hrChartContainerProfit" style="height: 250px; z-index: 500;"></div>
-                        </div>
-                    </div>
             </div>
         </div>
 

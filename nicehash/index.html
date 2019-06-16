@@ -1,154 +1,161 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Nicehash</title>
-        <!-- META Tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-        <meta name="description" content="Bitcoin Management Software">
-        <meta name="author" content="Nick Winans">
-         <!-- CSS -->
-         <link rel="stylesheet" href="/btc/css/style.css?v=1.5"> 
-         <!-- JS Scripts -->
-         <script src="/btc/js/scripts.js?v=1.5"></script>
-         <script src="/btc/js/canvasjs.min.js"></script>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#ffc40d">
-        <meta name="theme-color" content="#ffffff">
-    </head>
+<head>
+    <title>Nicehash</title>
+    <!-- META Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta name="description" content="Bitcoin Management Software">
+    <meta name="author" content="Nick Winans">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/btc/css/style.css?v=1.5">
+    <!-- JS Scripts -->
+    <script src="/btc/js/scripts.js?v=1.5"></script>
+    <script src="/btc/js/canvasjs.min.js"></script>
 
-    <body>
-        <div class="header sticky">
-            <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
-            <h1 id="title" class="headertext">Nicehash</h1>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <div class="header sticky">
+        <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
+        <h1 id="title" class="headertext">Nicehash</h1>
+        <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshData()" class="refreshtext">30s</h1>
+    </div>
+
+    <div class="side-nav" id="side-nav-container">
+        <div class="header appnameheader">
+            <img width="48px" height="48px" src="/btc/images/bitcoin.svg" class="appicon">
+            <h2 class="apptitle">Mining Info</h2>
         </div>
-
-        <div class="side-nav" id="side-nav-container">
-            <div class="header appnameheader">
-                <img width="48px" height="48px" src="/btc/images/bitcoin.svg" class="appicon">
-                <h2 class="apptitle">Mining Info</h2>
-            </div>
-            <div class="navlinks">
-                <nav>
-                    <ul>
-                        <li onclick="location.href='/btc/'"><img width="32px" height="32px" src="/btc/images/home.svg"></img><span class="nav">Dashboard</span></li>                        
-                        <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px" src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
-                        <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px" src="/btc/images/miningselected.svg"></img><span class="nav">Nicehash</span></li>
-                        <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
-                        <li onclick="location.href='/btc/components/'"><img width="32px" height="32px" src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
-                        <li onclick="location.href='/btc/changelog/'"><img width="32px" height="32px" src="/btc/images/checklist.svg"></img><span class="nav">Changelog</span></li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="navlinks">
+            <nav>
+                <ul>
+                    <li onclick="location.href='/btc/'"><img width="32px" height="32px"
+                            src="/btc/images/home.svg"></img><span class="nav">Dashboard</span></li>
+                    <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px"
+                            src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
+                    <li class="selected" onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px"
+                            src="/btc/images/miningselected.svg"></img><span class="nav">Nicehash</span></li>
+                    <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px"
+                            src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
+                    <li onclick="location.href='/btc/components/'"><img width="32px" height="32px"
+                            src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
+                    <li onclick="location.href='/btc/changelog/'"><img width="32px" height="32px"
+                            src="/btc/images/checklist.svg"></img><span class="nav">Changelog</span></li>
+                </ul>
+            </nav>
         </div>
+    </div>
 
-        <div class="wrapper">       
-            <div class="contentleft">
-                <div class="card"> 
-                    <div class="container">
-                        <h3 id="nhtitle">Overview</h3>
-                        <table>
-                            <tr>
-                                <th class="title center centernopad">USD</th>
-                                <td class="center centernopad" id="nicehashearningsusd">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title center centernopad">BTC</th>
-                                <td class="center centernopad" id="nicehashearningsbtc">Loading</td>
-                            </tr>
-                            <tr>
-                               <td><br></td>
-                            </tr>
-                            <tr>
-                                <th class="title center centernopad">USD/Day</th>
-                                <td class="center centernopad" id="nicehashdailyusdprofit">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title center centernopad">BTC/Day</th>
-                                <td class="center centernopad" id="nicehashdailybtcprofit">Loading</td>
-                            </tr>
-                                <td><br></td>
-                             </tr>
-                             <tr>
-                                 <th class="title center centernopad">Average USD/Day</th>
-                                 <td class="center centernopad" id="nicehashdailyaverageusdprofit">Loading</td>
-                             </tr>
-                             <tr>
-                                 <th class="title center centernopad">Average BTC/Day</th>
-                                 <td class="center centernopad" id="nicehashdailyaveragebtcprofit">Loading</td>
-                             </tr>
-                             <td><br></td>
-                             <tr>
-                                <th class="title center centernopad">Adjusted USD/Day</th>
-                                <td class="center centernopad" id="nicehashdailyadjustedusdprofit">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title center centernopad">Adjusted BTC/Day</th>
-                                <td class="center centernopad" id="nicehashdailyadjustedbtcprofit">Loading</td>
-                            </tr>
-                        </table>
-                    </div>
+    <div class="wrapper">
+        <div class="contentleft">
+            <div class="card-snapshot">
+                <div class="container">
+                    <p class="title card-snapshot-title">Nicehash USD/Day</p>
+                    <h2 class="card-snapshot-data" id="nicehashdailyusdprofit">Loading</h2>
                 </div>
-                <div class="card"> 
-                    <div class="container">
-                        <h3 id="nhtitle">Projections</h3>
-                        <table>
-                            <tr>
-                                <th class="title center centernopad">Projected Payout Date</th>
-                                <td class="center centernopad" id="projpay">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title center centernopad">Projected Payout Amount</th>
-                                <td class="center centernopad" id="projpayamt">Loading</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container">
-                        <h3 id="nhstatstitle">Nicehash Miners</h3>
-                        <table id="nicehashstatstable">
-                            <tr class="striped">
-                                <th>Worker</th>
-                                <th>Algo</th>
-                                <th>Speed</th>
-                                <th>Time</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="contentright">
-                <div class="card">
-                    <div class="container">
-                        <h3 id="nhprofithistorytitle">Profitability History</h3>
-                        <div id="24hrChartContainerProfit" style="height: 275px; z-index: 500;"></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container">
-                        <h3 id="nhprofithistorytitle">Balance History</h3>
-                        <div id="24hrChartContainer" style="height: 275px; z-index: 500;"></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container">
-                        <h3 id="nhprofithistorytitle">Mining Distribution</h3>
-                        <div id="coindistribution" style="height: 275px; z-index: 500;"></div>
-                    </div>
+                <div class="container">
+                    <p class="title card-snapshot-title second">Nicehash BTC/Day</p>
+                    <h2 class="card-snapshot-data" id="nicehashdailybtcprofit">Loading</h2>
                 </div>
             </div>
         </div>
+        <div class="contentcenter">
+            <div class="card-snapshot">
+                <div class="container">
+                    <p class="title card-snapshot-title">Nicehash Average USD</p>
+                    <h2 class="card-snapshot-data" id="nicehashdailyaverageusdprofit">Loading</h2>
+                </div>
+                <div class="container">
+                    <p class="title card-snapshot-title second">Nicehash Average BTC</p>
+                    <h2 class="card-snapshot-data" id="nicehashdailyaveragebtcprofit">Loading</h2>
+                </div>
+            </div>
+        </div>
+        <div class="contentright">
+            <div class="card-snapshot">
+                <div class="container">
+                    <p class="title card-snapshot-title">Nicehash Adjusted USD</p>
+                    <h2 class="card-snapshot-data" id="nicehashdailyadjustedusdprofit">Loading</h2>
+                </div>
+                <div class="container">
+                    <p class="title card-snapshot-title second">Nicehash Adjusted BTC</p>
+                    <h2 class="card-snapshot-data" id="nicehashdailyadjustedbtcprofit">Loading</h2>
+                </div>
+            </div>
+        </div>
+        <div class="dataright">
+            <div class="card-snapshot">
+                <div class="container">
+                    <p class="title card-snapshot-title">Nicehash USD</p>
+                    <h2 class="card-snapshot-data" id="nicehashearningsusd">Loading</h2>
+                </div>
+                <div class="container">
+                    <p class="title card-snapshot-title second">Nicehash BTC</p>
+                    <h2 class="card-snapshot-data" id="nicehashearningsbtc">Loading</h2>
+                </div>
+            </div>
+            <div class="card-snapshot">
+                <div class="container">
+                    <p class="title card-snapshot-title">Projected Payout Date</p>
+                    <h2 class="card-snapshot-data" id="projpay">Loading</h2>
+                </div>
+                <div class="container">
+                    <p class="title card-snapshot-title second">Projected Payout Amount</p>
+                    <h2 class="card-snapshot-data" id="projpayamt">Loading</h2>
+                </div>
+            </div>
+        </div>
+        <div class="dataleft">
+            <div class="card">
+                <div class="container">
+                    <h3 id="nhstatstitle">Nicehash Miners</h3>
+                    <table id="nicehashstatstable">
+                        <tr class="striped">
+                            <th>Worker</th>
+                            <th>Algo</th>
+                            <th>Speed</th>
+                            <th>Time</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3 id="nhprofithistorytitle">Profitability History</h3>
+                    <div id="24hrChartContainerProfit" style="height: 275px; z-index: 500;"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3 id="nhprofithistorytitle">Balance History</h3>
+                    <div id="24hrChartContainer" style="height: 275px; z-index: 500;"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3 id="nhprofithistorytitle">Mining Distribution</h3>
+                    <div id="coindistribution" style="height: 275px; z-index: 500;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
-        <script>
-            refreshData();
-            window.setInterval(refreshData, 30*1000);
-        </script>
+    <script>
+        refreshData();
+        window.setInterval(refreshData, 30 * 1000);
+        window.setInterval(updateTimer,     1*1000);
+    </script>
 
-    </body>
+</body>
+
 </html>

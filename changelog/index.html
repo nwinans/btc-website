@@ -1,224 +1,240 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Changelog</title>
-        <!-- META Tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-        <meta name="description" content="Bitcoin Management Software">
-        <meta name="author" content="Nick Winans">
-         <!-- CSS -->
-         <link rel="stylesheet" href="/btc/css/style.css?v=1.5"> 
-         <!-- JS Scripts -->
-         <script src="/btc/js/scripts.js?v=1.5"></script>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#ffc40d">
-        <meta name="theme-color" content="#ffffff">
-    </head>
+<head>
+    <title>Changelog</title>
+    <!-- META Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta name="description" content="Bitcoin Management Software">
+    <meta name="author" content="Nick Winans">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/btc/css/style.css?v=1.5">
+    <!-- JS Scripts -->
+    <script src="/btc/js/scripts.js?v=1.5"></script>
 
-    <body>
-        <div class="header sticky">
-            <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
-            <h1 id="title" class="headertext">Changelog</h1>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <div class="header sticky">
+        <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
+        <h1 id="title" class="headertext">Changelog</h1>
+    </div>
+
+    <div class="side-nav" id="side-nav-container">
+        <div class="header appnameheader">
+            <img width="48px" height="48px" src="/btc/images/bitcoin.svg" class="appicon">
+            <h2 class="apptitle">Mining Info</h2>
         </div>
-
-        <div class="side-nav" id="side-nav-container">
-            <div class="header appnameheader">
-                <img width="48px" height="48px" src="/btc/images/bitcoin.svg" class="appicon">
-                <h2 class="apptitle">Mining Info</h2>
-            </div>
-            <div class="navlinks">
-                <nav>
-                    <ul>
-                        <li onclick="location.href='/btc/'"><img width="32px" height="32px" src="/btc/images/home.svg"></img><span class="nav">Dashboard</span></li>                        
-                        <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px" src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
-                        <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px" src="/btc/images/mining.svg"></img><span class="nav">Nicehash</span></li>
-                        <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
-                        <li onclick="location.href='/btc/components/'"><img width="32px" height="32px" src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
-                        <li onclick="location.href='/btc/changelog/'"><img width="32px" height="32px" src="/btc/images/checklistselected.svg"></img><span class="nav">Changelog</span></li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="navlinks">
+            <nav>
+                <ul>
+                    <li onclick="location.href='/btc/'"><img width="32px" height="32px"
+                            src="/btc/images/home.svg"></img><span class="nav">Dashboard</span></li>
+                    <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px"
+                            src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
+                    <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px"
+                            src="/btc/images/mining.svg"></img><span class="nav">Nicehash</span></li>
+                    <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px"
+                            src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
+                    <li onclick="location.href='/btc/components/'"><img width="32px" height="32px"
+                            src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
+                    <li class="selected" onclick="location.href='/btc/changelog/'"><img width="32px" height="32px"
+                            src="/btc/images/checklistselected.svg"></img><span class="nav">Changelog</span></li>
+                </ul>
+            </nav>
         </div>
-        <div class="wrapper">       
-                <div class="contentleft">
-                    <div class="card">
-                            <div class="container">
-                                <h3>Version 2.0 - XX/XX/20XX</h3>
-                                <p>
-                                    
-                                </p>
-                            </div>
-                        </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 1.5 - 6/15/2019</h3>
-                            <p>
-                                -Added electricity usage<br>
-                                -Added detailed rig stats back<br>
-                                -Added details section to rig stats (and name recognizer)<br>
-                                -Added Mining Distribution to NiceHash (see what coins are mined)<br>
-                                -Added custom sorted detailed rig stats<br>
-                                -Added BTC/Day chart to see how profitibilty does over a day with a 1 hour moving average<br>
-                                -Added 10s updates for gpu information again (on rig stats)<br>
-                                -Added 1 hour average btc/day stats to dashboard and nicehash<br>
-                                -Added 30s refresh to nicehash and coinbase pages<br>
-                                -Added proper scaling to balance history<br>
-                                -Added adjusted profitibilty, earnings less electricity<br>
-                                <br>
-                                -Fixed 24 Hour Profitibility chart in NiceHash Page (no longer blank)<br>
-                                -Changed refresh time to 30s again, NiceHash only updates every 30s<br>
-                                -Renamed Profitibility Chart to Balance Chart to reflect new Profitbility Chart<br>
-                                -Changed balance history chart to profitibility history chart on dashboard<br>
-                                -Moved js files to /btc/js/ and css /btc/css/ and componets to /btc/components/<br>
-                                -Changed icon for GPU Info, has more color now<br>
-                                -GPU's in statistics are now sorted, like cards will be together<br>
-                                <br>
-                                -Removed animations from charts to speed up load time<br>
-                                -Removed redundant chart titles on charts with card titles<br>
-                                <br>
-                                -Refractored scripts.js
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 1.4 - 6/9/2019</h3>
-                            <p>
-                                -Added Rig-Stats back<br>
-                                -Reduced refresh time to 20s (from 30s)<br>
-                                -Added to-do list in changelog<br>
-                                -Added next projected payout
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 1.3 - 6/9/2019</h3>
-                            <p>
-                                -Implemented names of all algorithms as of 5/30/19<br>
-                                -Removed Rig Stats from Home (temporarily)<br>
-                                -Fixed profitibility history chart going over side-bar on mobile<br>
-                                -Fixed padding on changelog page<br>
-                                -Reduced height of header on mobile, fixed padding issues across all devices
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 1.2</h3>
-                            <p>
-                                -Added balance history to dashboard
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 1.1</h3>
-                            <p>
-                                -Added full GPU, CPU, RAM stats to rigstats<br>
-                                -Changed title of rigstats from GPU Info to Rig Stats
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 1.0</h3>
-                            <p>
-                                -Updated design to multi page design<br>
-                                -Added Total Payback progress bar to dashboard and Components page<br>
-                                -Added transaction history to Coinbase<br>
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 0.5</h3>
-                            <p>
-                                -Added GPU Information
-                            </p>
-                        </div>
-                    </div>  
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 0.4.1</h3>
-                            <p>
-                                -Added favicon.ico<br>
-                                -Added background to header<br>
-                                -Updated card shadows to be darker<br>
-                                -Preparation code for navigation links<br>
-                                -Added time to referesh
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 0.4</h3>
-                            <p>
-                                -Added nicehash profitability information<br>
-                                -Changed nicehash api endpoint - now more detailed at cost of a little speed<br>
-                                -Optimizations on how data is loaded and stored and subsequently updated
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 0.3</h3>
-                            <p>
-                                -Moved Current/Planned gear to external files to allow post's updating the data<br>
-                                -Added dynamic progress bar to current/planned gear<br>
-                                -Changed background color to light slate gray
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 0.2</h3>
-                            <p>
-                                -Implemented Nicehash Miners, updates every 30s<br>
-                                -Moved changelog to right column<br>
-                                -Moved scripts to external js<br>
-                                -Added Current/Planned Gear
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 0.1.2</h3>
-                            <p>
-                                -Updated grid system
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="container">
-                            <h3>Version 0.1.1</h3>
-                            <p>
-                                -Converted all cards into tables<br>
-                                -Added Nicehash Miner card, not implemented
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contentright">
-                    <div class="card">
-                        <div class="container">
-                            <h3>To-Do List</h3>
-                            <p>
-                                -New color scheme/redesign<br>
-                                -Get gpu, ram and hard drive power usage<br>
-                                -Redo backend, fetch every nicehash and coinbase and store it in json file, will save data and processing time on frontend
-                            </p>
-                        </div>
-                    </div> 
+    </div>
+    <div class="wrapper">
+        <div class="contentleft">
+            <div class="card">
+                <div class="container">
+                    <h3>Version 2.0 - XX/XX/2019</h3>
+                    <p>
+                        -Snapshot Layout, snapshots section at the top and a 2 column data and chart section beneath<br><br>
+                        -Added refresh timer to header bar in all relevant pages<br>
+                        -Added manual refreshing content without reloading the page<br>
+                        <br>
+                        -Removed progress bars<br>
+                        <br>
+                        -Fixed spelling of profitability
+                    </p>
                 </div>
             </div>
         </div>
-    </body>
+        <div class="contentcenter">
+            <div class="card">
+                <div class="container">
+                    <h3>Version 1.5 - 6/15/2019</h3>
+                    <p>
+                        -Added electricity usage<br>
+                        -Added detailed rig stats back<br>
+                        -Added details section to rig stats (and name recognizer)<br>
+                        -Added Mining Distribution to NiceHash (see what coins are mined)<br>
+                        -Added custom sorted detailed rig stats<br>
+                        -Added BTC/Day chart to see how profitability does over a day with a 1 hour moving average<br>
+                        -Added 10s updates for gpu information again (on rig stats)<br>
+                        -Added 1 hour average btc/day stats to dashboard and nicehash<br>
+                        -Added 30s refresh to nicehash and coinbase pages<br>
+                        -Added proper scaling to balance history<br>
+                        -Added adjusted profitability, earnings less electricity<br>
+                        <br>
+                        -Fixed 24 Hour profitability chart in NiceHash Page (no longer blank)<br>
+                        -Changed refresh time to 30s again, NiceHash only updates every 30s<br>
+                        -Renamed profitability Chart to Balance Chart to reflect new Profitbility Chart<br>
+                        -Changed balance history chart to profitability history chart on dashboard<br>
+                        -Moved js files to /btc/js/ and css /btc/css/ and componets to /btc/components/<br>
+                        -Changed icon for GPU Info, has more color now<br>
+                        -GPU's in statistics are now sorted, like cards will be together<br>
+                        <br>
+                        -Removed animations from charts to speed up load time<br>
+                        -Removed redundant chart titles on charts with card titles<br>
+                        <br>
+                        -Refractored scripts.js
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 1.4 - 6/9/2019</h3>
+                    <p>
+                        -Added Rig-Stats back<br>
+                        -Reduced refresh time to 20s (from 30s)<br>
+                        -Added to-do list in changelog<br>
+                        -Added next projected payout
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 1.3 - 6/9/2019</h3>
+                    <p>
+                        -Implemented names of all algorithms as of 5/30/19<br>
+                        -Removed Rig Stats from Home (temporarily)<br>
+                        -Fixed profitability history chart going over side-bar on mobile<br>
+                        -Fixed padding on changelog page<br>
+                        -Reduced height of header on mobile, fixed padding issues across all devices
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 1.2</h3>
+                    <p>
+                        -Added balance history to dashboard
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 1.1</h3>
+                    <p>
+                        -Added full GPU, CPU, RAM stats to rigstats<br>
+                        -Changed title of rigstats from GPU Info to Rig Stats
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 1.0</h3>
+                    <p>
+                        -Updated design to multi page design<br>
+                        -Added Total Payback progress bar to dashboard and Components page<br>
+                        -Added transaction history to Coinbase<br>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 0.5</h3>
+                    <p>
+                        -Added GPU Information
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 0.4.1</h3>
+                    <p>
+                        -Added favicon.ico<br>
+                        -Added background to header<br>
+                        -Updated card shadows to be darker<br>
+                        -Preparation code for navigation links<br>
+                        -Added time to referesh
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 0.4</h3>
+                    <p>
+                        -Added nicehash profitability information<br>
+                        -Changed nicehash api endpoint - now more detailed at cost of a little speed<br>
+                        -Optimizations on how data is loaded and stored and subsequently updated
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 0.3</h3>
+                    <p>
+                        -Moved Current/Planned gear to external files to allow post's updating the data<br>
+                        -Added dynamic progress bar to current/planned gear<br>
+                        -Changed background color to light slate gray
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 0.2</h3>
+                    <p>
+                        -Implemented Nicehash Miners, updates every 30s<br>
+                        -Moved changelog to right column<br>
+                        -Moved scripts to external js<br>
+                        -Added Current/Planned Gear
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <h3>Version 0.1.2</h3>
+                    <p>
+                        -Updated grid system
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="container">
+                    <h3>Version 0.1.1</h3>
+                    <p>
+                        -Converted all cards into tables<br>
+                        -Added Nicehash Miner card, not implemented
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="contentright">
+            <div class="card">
+                <div class="container">
+                    <h3>To-Do List</h3>
+                    <p>
+                        -Get gpu, ram and hard drive power usage<br>
+                        -Redo backend, fetch every nicehash and coinbase and store it in json file, will save data and
+                        processing time on frontend
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
 </html>

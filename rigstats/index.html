@@ -25,6 +25,7 @@
         <div class="header sticky">
             <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
             <h1 id="title" class="headertext">Rig Stats</h1>
+            <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshGPUData()" class="refreshtext">10s</h1>
         </div>
 
         <div class="side-nav" id="side-nav-container">
@@ -38,7 +39,7 @@
                         <li onclick="location.href='/btc/'"><img width="32px" height="32px" src="/btc/images/home.svg"></img><span class="nav">Dashboard</span></li>                        
                         <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px" src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
                         <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px" src="/btc/images/mining.svg"></img><span class="nav">Nicehash</span></li>
-                        <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpuselected.svg"></img><span class="nav">GPU Info</span></li>
+                        <li class="selected" onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpuselected.svg"></img><span class="nav">GPU Info</span></li>
                         <li onclick="location.href='/btc/components/'"><img width="32px" height="32px" src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
                         <li onclick="location.href='/btc/changelog/'"><img width="32px" height="32px" src="/btc/images/checklist.svg"></img><span class="nav">Changelog</span></li>
                     </ul>
@@ -46,8 +47,40 @@
             </div>
         </div>
         
-        <div class="wrapper">       
+        <div class="wrapper">  
             <div class="contentleft">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">GPU's</p>
+                        <h2 class="card-snapshot-data" id="gpucount"></h2>
+                    </div>
+                </div>
+            </div>   
+            <div class="contentcenter">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Electricity Usage</p>
+                        <h2 class="card-snapshot-data" id="elecusage"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="contentright">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Temperature Range</p>
+                        <h2 class="card-snapshot-data" id="temprange"></h2>
+                    </div>
+                </div>
+            </div>  
+            <div class="dataright">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Driver Version</p>
+                        <h2 class="card-snapshot-data" id="driverversion"></h2>
+                    </div>
+                </div>
+            </div>  
+            <div class="dataleft">
                 <div class="card">
                     <div class="container">
                         <h3 id="gpuinfotitle">Summary</h3>
@@ -61,35 +94,16 @@
                         </table>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="container">
-                        <h3 id="gpuinfotitle">Details</h3>
-                        <table id="detailsTable">
-                            <tr class="center">
-                                <th class="title center centernopad">Driver Version</th>
-                                <td class="center centernopad" id="tableDriver">Loading</td>
-                            </tr>
-                            <tr class="center">
-                                <th class="title center centernopad">Electricity Usage</th>
-                                <td class="center centernopad" id="tableElectricity">Loading</td>
-                            </tr>
-                            <tr class="center">
-                                <th class="title center centernopad">Temperature Range</th>
-                                <td class="center centernopad" id="tableTemperature">Loading</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                <div class="details">
 
-            </div>  
-            <div class="contentright">
-                
+                </div>
             </div>
         </div>
     
         <script>
             refreshGPUData();
             window.setInterval(refreshGPUData,    10*1000);
+            window.setInterval(updateTimer,     1*1000);
         </script>
     </body>
 </html>

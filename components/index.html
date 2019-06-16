@@ -11,6 +11,7 @@
          <link rel="stylesheet" href="/btc/css/style.css?v=1.5"> 
          <!-- JS Scripts -->
          <script src="/btc/js/scripts.js?v=1.5"></script>
+         <script src="/btc/js/sha256.js"></script>
 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -25,6 +26,7 @@
         <div class="header sticky">
             <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
             <h1 id="title" class="headertext">Components</h1>
+            <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshData()" class="refreshtext">30s</h1>
         </div>
 
         <div class="side-nav" id="side-nav-container">
@@ -39,38 +41,53 @@
                         <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px" src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
                         <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px" src="/btc/images/mining.svg"></img><span class="nav">Nicehash</span></li>
                         <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
-                        <li onclick="location.href='/btc/components/'"><img width="32px" height="32px" src="/btc/images/motherboardselected.svg"></img><span class="nav">Components</span></li>
+                        <li class="selected" onclick="location.href='/btc/components/'"><img width="32px" height="32px" src="/btc/images/motherboardselected.svg"></img><span class="nav">Components</span></li>
                         <li onclick="location.href='/btc/changelog/'"><img width="32px" height="32px" src="/btc/images/checklist.svg"></img><span class="nav">Changelog</span></li>
                     </ul>
                 </nav>
             </div>
         </div>
 
-        <div class="wrapper">       
+        <div class="wrapper">    
             <div class="contentleft">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Spent</p>
+                        <h2 class="card-snapshot-data" id="spent"></h2>
+                    </div>
+                </div>
+            </div>   
+            <div class="contentcenter">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Earned</p>
+                        <h2 class="card-snapshot-data" id="earned"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="contentright">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Left (Overall)</p>
+                        <h2 class="card-snapshot-data" id="left"></h2>
+                    </div>
+                </div>
+            </div>    
+            <div class="dataright">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title" id="leftcomptitle">Left ()</p>
+                        <h2 class="card-snapshot-data" id="leftcomp"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="dataleft">
                 <div class="card">
                     <div class="container">
                         <h3>Current Gear</h3>
                         <p id="currentgear"></p>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="container">
-                        <h3>Payback Progress</h3>
-                        <div class="wrapper">
-                            <div class="contentleft">
-                                <progress style="display: none;" id="paybackprogress"></progress>
-                                <h5 style="display: none;" id="paybacktitle" class="center">Progress towards</h5>
-                            </div>
-                            <div class="contentright">
-                                <progress style="display: none;" id="totalpaybackprogess"></progress>
-                                <h5 style="display: none;" id="totalpaybacktitle" class="center">Total Progress</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="contentright">
                 <div class="card"> 
                     <div class="container">
                         <h3>Planned Upgrades</h3>
@@ -82,6 +99,8 @@
 
         <script>
             refreshData();
+            window.setInterval(refreshData, 30*1000);
+            window.setInterval(updateTimer, 1*1000);
         </script>
 
     </body>

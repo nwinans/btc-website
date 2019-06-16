@@ -26,6 +26,7 @@
         <div class="header sticky">
             <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
             <h1 id="title" class="headertext">Coinbase</h1>
+            <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshData()" class="refreshtext">30s</h1>
         </div>
 
         <div class="side-nav" id="side-nav-container">
@@ -37,7 +38,7 @@
                 <nav>
                     <ul>
                         <li onclick="location.href='/btc/'"><img width="32px" height="32px" src="/btc/images/home.svg"></img><span class="nav">Dashboard</span></li>                        
-                        <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px" src="/btc/images/walletselected.svg"></img><span class="nav">Coinbase</span></li>
+                        <li class="selected" onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px" src="/btc/images/walletselected.svg"></img><span class="nav">Coinbase</span></li>
                         <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px" src="/btc/images/mining.svg"></img><span class="nav">Nicehash</span></li>
                         <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
                         <li onclick="location.href='/btc/components/'"><img width="32px" height="32px" src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
@@ -47,25 +48,20 @@
             </div>
         </div>
 
-        <div class="wrapper">       
-            <div class="contentleft">
-                <div class="card"> 
+        <div class="wrapper nosnap">       
+            <div class="dataright">
+                <div class="card-snapshot"> 
                     <div class="container">
-                        <h3 id="cbtitle">Vault Balance</h3>
-                        <table>
-                            <tr>
-                                <th class="title">USD</th>
-                                <td id="coinbasebalanceusd">Loading</td>
-                            </tr>
-                            <tr>
-                            <th class="title">BTC</th>
-                                <td id="coinbasebalancebtc">Loading</td>
-                            </tr>
-                        </table>
+                        <p class="title card-snapshot-title">Vault USD</p>
+                        <h2 class="card-snapshot-data" id="coinbasebalanceusd">Loading</h2>
+                    </div>
+                    <div class="container">
+                        <p class="title card-snapshot-title second">Vault BTC</p>
+                        <h2 class="card-snapshot-data" id="coinbasebalancebtc">Loading</h2>
                     </div>
                 </div>
             </div>
-            <div class="contentright">
+            <div class="dataleft">
                 <div class="card"> 
                     <div class="container">
                         <h3 id="transactionstitle">Transactions</h3>
@@ -85,7 +81,7 @@
         <script>
             refreshData();
             window.setInterval(refreshData, 30*1000);
+            window.setInterval(updateTimer,     1*1000);
         </script>
-
     </body>
 </html>
