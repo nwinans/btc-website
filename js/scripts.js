@@ -165,7 +165,7 @@ function refreshGPUData() {
     getGPUData();
 }
 function updateTimer() {
-    document.getElementById("ttr").innerHTML = time + "s";
+    if (document.getElementById("ttr").innerHTML.length !== 1) document.getElementById("ttr").innerHTML = time + "s";
     time--;
 }
 document.onclick = function(event) {
@@ -947,5 +947,9 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
 ];
 
 function refreshmouseover() {
-    console.log("hii");
+    document.getElementById("ttr").innerHTML = "&#8634";
+}
+function resetrefresh() {
+    document.getElementById("ttr").innerHTML = time + "s";
+
 }
