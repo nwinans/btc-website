@@ -160,6 +160,7 @@ function refreshGPUData() {
     if (document.location.pathname == "/btc/rigstats/") {
         getFullGPUData();
         getGPUSummary();
+        time = 10;
     }
     getGPUData();
 }

@@ -312,10 +312,12 @@ img {
 
 .headertext {
     padding-left: 1em;
+    float: left;
 }
 
 .refreshtext {
     padding-right: 1em;
+    float: right;
 }
 
 .card .wrapper {

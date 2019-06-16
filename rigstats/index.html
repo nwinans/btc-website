@@ -25,6 +25,7 @@
         <div class="header sticky">
             <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
             <h1 id="title" class="headertext">Rig Stats</h1>
+            <h1 id="ttr" class="refreshtext">10s</h1>
         </div>
 
         <div class="side-nav" id="side-nav-container">
@@ -90,6 +91,7 @@
         <script>
             refreshGPUData();
             window.setInterval(refreshGPUData,    10*1000);
+            window.setInterval(updateTimer,     1*1000);
         </script>
     </body>
 </html>

@@ -27,6 +27,7 @@
     <div class="header sticky">
         <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
         <h1 id="title" class="headertext">Nicehash</h1>
+        <h1 id="ttr" class="refreshtext">30s</h1>
     </div>
 
     <div class="side-nav" id="side-nav-container">
@@ -152,6 +153,7 @@
     <script>
         refreshData();
         window.setInterval(refreshData, 30 * 1000);
+        window.setInterval(updateTimer,     1*1000);
     </script>
 
 </body>
