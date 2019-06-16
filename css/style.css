@@ -328,6 +328,9 @@ p#currentgear, p#futuregear {
 .refreshtext {
     padding-right: 1em;
     float: right;
+    width: 60px;
+    text-align: right;
+    height: 40px;
 }
 
 .card .wrapper {
