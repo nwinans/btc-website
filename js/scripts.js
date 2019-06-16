@@ -539,13 +539,12 @@ function getGPUSummary() {
                 return true;
             }).map(function(objectKey, i) {
                 electricity += parseFloat(json[i]["power_draw"].substring(0, json[i]["power_draw"].length - 2));
-                driver = json[i]["driver"];
                 minTemp = Math.min(minTemp, json[i]["temperature_gpu"]);
                 maxTemp = Math.max(maxTemp, json[i]["temperature_gpu"]);
             });
-            document.getElementById("tableDriver").innerHTML = driver;
-            document.getElementById("tableElectricity").innerHTML = electricity + " W";
-            document.getElementById("tableTemperature").innerHTML = minTemp + "°C - " + maxTemp + "°C"
+            document.getElementById("gpucount").innerHTML = json.length;
+            document.getElementById("elecusage").innerHTML = Math.round(electricity * 100) / 100 + " W";
+            document.getElementById("temprange").innerHTML = minTemp + "°C - " + maxTemp + "°C"
         });
     }
 }
