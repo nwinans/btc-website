@@ -28,7 +28,7 @@
         <div class="header sticky" style="flex-grow: 1">
             <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
             <h1 id="title" class="headertext">Dashboard</h1>
-            <h1 id="ttr" class="refreshtext">30s</h1>
+            <h1 id="ttr" onmouseover="refreshmouseover()" class="refreshtext">30s</h1>
         </div>
 
         <div class="side-nav" id="side-nav-container">
@@ -142,129 +142,6 @@
                 </div>
             </div>
         </div>
-<!--
-
-
-        <div class="wrapper">       
-            <div class="contentleft">
-                
-                <div class="card">
-                    <div class="container">
-                        <h3 id="pricetitle">Overall Stats</h3>
-                        <table>
-                            <tr>
-                                <th class="title">BTC Price</th>
-                                <td id="btcprice">Loading</td>
-                            </tr>
-                            <tr>
-                            <th class="title">Total USD</th>
-                                <td id="totalusd">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">Total BTC</th>
-                                <td id="totalbtc">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">Time till refresh</th>
-                                <td id="ttr">0s</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container">
-                        <h3 id="nhstatstitle">Nicehash Miners</h3>
-                        <table id="nicehashstatstable">
-                            <tr class="striped">
-                                <th>Worker</th>
-                                <th>Algo</th>
-                                <th>Speed</th>
-                                <th>Time</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container">
-                        <h3 id="gpuinfotitle">GPU Information</h3>
-                        <table id="cardinfotable">
-                            <tr class="striped">
-                                <th>GPU</th>
-                                <th>Temp</th>
-                                <th>Fan</th>
-                                <th>Usage</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="contentright">
-                <div class="card"> 
-                    <div class="container">
-                        <h3 id="cbtitle">Coinbase Balance</h3>
-                        <table>
-                            <tr>
-                                <th class="title">USD</th>
-                                <td id="coinbasebalanceusd">Loading</td>
-                            </tr>
-                            <tr>
-                            <th class="title">BTC</th>
-                                <td id="coinbasebalancebtc">Loading</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="card"> 
-                    <div class="container">
-                        <h3 id="nhitle">Nicehash Details</h3>
-                        <table>
-                            <tr>
-                                <th class="title">USD</th>
-                                <td id="nicehashearningsusd">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">BTC</th>
-                                <td id="nicehashearningsbtc">Loading</td>
-                            </tr>
-                            <tr>
-                               <td><br></td>
-                            </tr>
-                            <tr>
-                                <th class="title">USD/Day</th>
-                                <td id="nicehashdailyusdprofit">Loading</td>
-                            </tr>
-                            <tr>
-                                <th class="title">BTC/Day</th>
-                                <td id="nicehashdailybtcprofit">Loading</td>
-                            </tr>
-                            
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container">
-                        <h3>Payback Progress</h3>
-                        <div class="wrapper">
-                            <div class="contentleft">
-                                <progress style="display: none;" id="paybackprogress"></progress>
-                                <h5 style="display: none;" id="paybacktitle" class="center">Progress towards</h5>
-                            </div>
-                            <div class="contentright">
-                                <progress style="display: none;" id="totalpaybackprogess"></progress>
-                                <h5 style="display: none;" id="totalpaybacktitle" class="center">Total Progress</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                        <div class="container">
-                            <h3 id="nhprofithistorytitle">Profitibility History</h3>
-                            <div id="24hrChartContainerProfit" style="height: 250px; z-index: 500;"></div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        -->
 
         <script>
             refreshData()
