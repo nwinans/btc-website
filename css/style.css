@@ -1,50 +1,57 @@
 /* style.css - Nick Winans
 ** Style sheet for Bitcoin Mining info
-** Version 1.5
+** Version 2.0
 */
+
+:root {
+    --bg-color: white;
+
+    --accent-color: lightblue;
+    
+    --header-color: white;
+    --header-text-color: blue;
+
+    --card-color: white;
+    --card-text-color: blue;
+    --card-snapshot-color: blue;
+    --card-shapshot-text-color: white;
+    --card-corner-radius: 20px;
+}
+
 
 /*global tag changes */
 
 body {
     margin: 0px;
-    background-color: lightslategray;
+    background-color: var(--bg-color);
     /*background-image: url(https://photos.gograph.com/thumbs/CSP/CSP990/k10294230.jpg);*/
     margin-left: 250px;
 }
-
 h1 {
     font-family: 'Roboto', sans-serif;
     text-rendering: optimizelegibility;
 }
-
 h2, h3, h4, h5 {
     font-family: 'Roboto', sans-serif;
 }
-
 p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
-
 span {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
-
 table {
     width: 100%;
 }
-
 th {
     font-family: 'Roboto', sans-serif;
 }
-
 th.title {
     width: 40%;
 }
-
 td {
     font-family: 'Open Sans', sans-serif;
 }
-
 progress {
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -58,21 +65,19 @@ progress {
     border: solid #cccccc 8px;
     border-radius: 10px;
 
-    color: darkslategray;
+    color: var(--header-color);
 
     background-color: #cccccc;
     background: #cccccc;
 }
-
 ul {
     padding-left: 0px;
 }
-
 li {
     list-style-type: none;
     margin: auto;
     padding: 8px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--accent-color);
     display: flex;
     align-items: center;
 }
@@ -103,11 +108,9 @@ td.center {
     text-align: center;
 }
 
-h1#title {
-    width: 100%;
-}
 
-tr.striped:nth-child(even) {background-color: #f2f2f2;}
+
+tr.striped:nth-child(even) {background-color: var(--accent-color);}
 
 progress::-webkit-progress-bar {
 	background: #cccccc;
@@ -117,8 +120,8 @@ progress::-moz-progress-bar {
 	border-radius: 5px;
 	background-image: -moz-linear-gradient(
         center bottom,
-        rgb(47,79,79) 0%,
-		rgb(119,136,153) 75%
+        var(--bg-color) 0%,
+		var(--header-color) 100%
 	);
 }
 
@@ -128,14 +131,14 @@ progress::-webkit-progress-value {
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(47,79,79)),
-		color-stop(1, rgb(119,136,153))
+		color-stop(0, var(--bg-color)),
+		color-stop(1, var(--header-color))
 	);
 }
 
 span.nav {
     font-family: 'Open Sans', sans-serif;
-    color: darkslategray;
+    color: var(--header-text-color);
     font-weight: bold;
     text-decoration: none;
     font-size: 18px;
@@ -165,9 +168,30 @@ img {
 .card {
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.6);
     transition: 0.3s;
-    border-radius: 8px;
+    border-radius: var(--card-corner-radius);
     margin-bottom: 12px;
-    background-color: white;
+    background-color: var(--card-color);
+    color: var(--card-text-color)
+}
+
+.card-snapshot {
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.6);
+    transition: 0.3s;
+    border-radius: var(--card-corner-radius);
+    margin-bottom: 12px;
+    background-color: var(--card-snapshot-color);
+    color: var(--card-shapshot-text-color);
+}
+
+.card-snapshot-title {
+    padding: 0px 0px 0px 0px;
+    margin-block-end: 0px;
+}
+
+.card-snapshot-data {
+    padding: 0px 0px 0px 0px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
 }
 
 .card:hover {
@@ -185,36 +209,52 @@ img {
 .header {
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.6);
     /*background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%) !important;*/
-    background-color: darkslategray;
-    color: white;
+    background-color: var(--header-color);
+    color: var(--header-text-color);
     margin-bottom: 8px;
-    width: 100%;
+    width: calc(100% - 250px);
     z-index: 999;
 }
 
 .contentleft {
     grid-area: left;
-    padding:8px;
+    padding: 8px 8px 0px 8px;
+}
+
+.contentcenter {
+    grid-area: center;
+    padding: 8px 8px 0px 8px;
 }
 
 .contentright {
-    padding: 8px;
+    padding: 8px 8px 0px 8px;
     grid-area: right;
+}
+
+.dataleft {
+    padding: 8px;
+    grid-area: dataleft;
+}
+
+.dataright {
+    padding: 8px;
+    grid-area: dataright;
 }
 
 .side-nav {
     left: 0;
     /*background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);*/
-    background-color: lightslategray;
+    background-color: var(--header-color);
+    color: var(--header-text-color);
     overflow-x: hidden;
     float: left;
     position: fixed;
     top: 0;
     width: 250px;
     height: 100%;
-    background-color: white;
     box-shadow: 4px 0px 4px 0px rgba(0,0,0,0.2);
     z-index: 1000;
+    color: var(--header-text-color)
 }
 
 .appicon {
@@ -227,7 +267,7 @@ img {
 }
 
 .apptitle {
-    color: white;
+    color: var(--header-color);
     text-align: left;
     vertical-align: bottom;
     position: absolute;
@@ -240,7 +280,7 @@ img {
     position: absolute;
     height: 150px;
     width: 100%;
-    background-color: darkslategray;
+    background-color: var(--header-text-color);
 }
 
 .navlinks {
@@ -253,14 +293,29 @@ img {
 .wrapper {
     padding-top: 86px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: minmax(100px, auto);
     grid-template-areas:
-        "left right";
+        "left left center center right right"
+        "dataright dataright dataleft dataleft dataleft dataleft";
+}
+
+.nosnap {
+    grid-template-areas:
+        "dataright dataright dataleft dataleft dataleft dataleft";
+}
+
+.stats {
+    grid-template-areas:
+    "dataright dataright dataright dataleft dataleft dataleft";
 }
 
 .headertext {
     padding-left: 1em;
+}
+
+.refreshtext {
+    padding-right: 1em;
 }
 
 .card .wrapper {
@@ -271,32 +326,33 @@ img {
     display: none;
     border-width: 0px;
     font-size: 30px;
-    color: white;
+    color: var(--header-text-color);
 }
 
 .side-nav-btn.left {
     float: left;
     padding-left: 16px;
     vertical-align: middle;
-    background-color: darkslategray;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    background-color: var(--header-color);
+    margin-block-start: .5em;
+    margin-block-end: .5em;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .side-nav-btn.right {
     float: right;
-    background-color: lightgray;
+    background-color: var(--header-color);
 }
 
 .side-nav li:hover {
-    background-color: lightgray;
+    background-color: var(--accent-color);
 }
 
 .fifty {
     width: 50%;
     padding-top: 86px;
 }
-
 
 html, body {
     max-width: 100%;
@@ -307,15 +363,26 @@ html, body {
 /*mobile*/
 @media only screen and (max-width: 1024px) {
 
+    .header {
+        width: 100%;
+    }
+
     .headertext {
         margin-block-end: .5em;
         margin-block-start: .5em;
-        padding-left: 2em;
+        padding-left: .5em;
+    }
+
+    .refreshtext {
+        margin-block-end: .5em;
+        margin-block-start: .5em;
+        padding-right: .5em;
     }
 
     h1.center {
         margin-left: -48.95px;
     }
+
     .center {
         margin: auto;
     }
@@ -328,7 +395,7 @@ html, body {
     .card {
         box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.6);
         transition: 0.3s;
-        border-radius: 5px;
+        border-radius: var(--card-corner-radius);
         margin-bottom: 8px;
     }
 
@@ -349,10 +416,11 @@ html, body {
     .wrapper {
         padding-top: 5em;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         grid-auto-rows: minmax(100px, auto);
         grid-template-areas: 
-            "left right";
+        "left left center center right right"
+        "dataleft dataleft dataleft dataright dataright dataright";
     }
 }
 
@@ -369,7 +437,16 @@ html, body {
         grid-auto-rows: minmax(100px, auto);
         grid-template-areas: 
             "left"
-            "right";
+            "center"
+            "right"
+            "dataright"
+            "dataleft";
+    }
+
+    .nosnap {
+        grid-template-areas: 
+        "dataright"
+        "dataleft";
     }
 }
 
@@ -391,5 +468,4 @@ html, body {
 .sticky {
     position: fixed;
     top: 0;
-    width: 100%;
   }

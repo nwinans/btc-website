@@ -1,5 +1,5 @@
 /* Scripts.js - Nick Winans
-** Version 1.5
+** Version 2.0
 ** Contains all the scripts to retrieve relevent Bitcoin Mining Data
 */
 
@@ -470,7 +470,7 @@ function getFullGPUData() {
         }).then(function(response) {
             return response.json();
         }).then(function(json) {
-            var contentDiv = document.getElementsByClassName("contentright")[0];
+            var contentDiv = document.getElementsByClassName("dataleft")[0];
             contentDiv.innerHTML = "";
             Object.keys(json).filter(function(object){
                 return !(json[object]["name"] === null)
