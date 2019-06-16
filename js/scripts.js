@@ -151,6 +151,9 @@ function refreshData() {
         createProfibilityChart();
         getGPUData();
     } else if (document.location.pathname == "/btc/components/") {
+        getBitcoinPrice();
+        getNicehashBasic();
+        getCoinbaseSavings();
         loadGear();
         createProgressBars();
     }

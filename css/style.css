@@ -303,6 +303,10 @@ img {
         "dataright dataright dataleft dataleft dataleft dataleft";
 }
 
+.second {
+    margin-block-start: 0em;
+}
+
 .nosnap {
     grid-template-areas:
         "dataright dataright dataleft dataleft dataleft dataleft";
@@ -450,6 +454,12 @@ html, body {
 
     .nosnap {
         grid-template-areas: 
+        "dataright"
+        "dataleft";
+    }
+
+    .stats {
+        grid-template-areas:
         "dataright"
         "dataleft";
     }
