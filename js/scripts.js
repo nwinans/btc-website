@@ -20,28 +20,22 @@ var data = {
     set coinbase(newval) {
         this.cb = newval;
         window.localStorage.coinbase = newval;
-        if (document.getElementById("coinbasebalancebtc")){
+        if (document.getElementById("coinbasebalancebtc")) {
             document.getElementById("coinbasebalancebtc").innerHTML = (Math.round(newval*100000000)/100000000) +  " &#579";
             document.getElementById("coinbasebalanceusd").innerHTML = "$" + (Math.round(this.usd * newval*100)/100);
         }
         if (typeof this.nh == undefined) this.btc = newval;
         else this.bitcoin = newval + this.nh;
-        if (document.getElementById("paybackprogress")){
-            createProgressBars();
-        }
     },
     set nicehash(newval) {
         this.nh = newval;
         window.localStorage.nicehash = newval;
-        if (document.getElementById("nicehashearningsbtc")){
+        if (document.getElementById("nicehashearningsbtc")) {
             document.getElementById("nicehashearningsbtc").innerHTML = (Math.round(newval*100000000)/100000000) + " &#579";
             document.getElementById("nicehashearningsusd").innerHTML = "$" + (Math.round(this.usd * newval*100)/100);
         }
         if(typeof this.cb === undefined) this.btc = newval;
         else this.bitcoin = newval + this.cb;
-        if (document.getElementById("paybackprogress")){
-            createProgressBars();
-        }
         if (document.getElementById("projpay")) {
             getProjectedPayout();
         }
@@ -51,11 +45,10 @@ var data = {
      */
     set nicehashprofitablity(newval) {
         this.nhp = newval;
-        if (document.getElementById("nicehashdailybtcprofit")){
+        if (document.getElementById("nicehashdailybtcprofit")) {
             document.getElementById("nicehashdailybtcprofit").innerHTML = (Math.round(newval*100000000)/100000000) + " &#579";
             document.getElementById("nicehashdailyusdprofit").innerHTML = "$" + (Math.round(this.usd * newval*100)/100);
         }
-        
     },
     /**
      * @param {number} newval nicehash adjusted profitibily value
@@ -88,24 +81,27 @@ var data = {
             var perc = 100-Math.round(((this.usd * newval)/(parseFloat(document.getElementById("spent").innerHTML.substring("1"))))*100);
             document.getElementById("left").innerHTML = "$" + (Math.round((parseFloat(document.getElementById("spent").innerHTML.substring("1")) - (this.usd * newval))*100)/100) + " (" + perc + "%)";
         }
+        if (document.getElementById("leftcomp")) {
+            loadCurrentGearPayback();
+        }
     },
     set usdvalue(newval) {
         this.usd = newval;
         window.localStorage.btcusd = newval;
         window.localStorage.btcval = newval * this.btc;
-        if (document.getElementById("btcprice")){
+        if (document.getElementById("btcprice")) {
             document.getElementById("btcprice").innerHTML = "$" + newval;
         }
-        if (document.getElementById("coinbasebalanceusd")){
+        if (document.getElementById("coinbasebalanceusd")) {
             document.getElementById("coinbasebalanceusd").innerHTML = "$" + (Math.round(this.cb * newval*100)/100);
         }
-        if (document.getElementById("nicehashearningsusd")){
+        if (document.getElementById("nicehashearningsusd")) {
             document.getElementById("nicehashearningsusd").innerHTML = "$" + (Math.round(this.nh * newval * 100)/100);
         }
-        if (document.getElementById("totalusd")){
+        if (document.getElementById("totalusd")) {
             document.getElementById("totalusd").innerHTML = "$" + (Math.round(this.btc * newval*100)/100);
         }
-        if (document.getElementById("nicehashdailyusdprofit")){
+        if (document.getElementById("nicehashdailyusdprofit")) {
             document.getElementById("nicehashdailyusdprofit").innerHTML = "$" + (Math.round(newval * this.nhp * 100)/100);
         }
         if (document.getElementById("nicehashdailyaverageusdprofit")) {
@@ -114,8 +110,8 @@ var data = {
         if (document.getElementById("nicehashdailyadjustedusdprofit")) {
             document.getElementById("nicehashdailyadjustedusdprofit").innerHTML = "$" + (Math.round((this.nhap * newval - this.nhadp)*100)/100);
         }
-        if (document.getElementById("paybackprogress")){
-            createProgressBars();
+        if (document.getElementById("leftcomp")) {
+            loadCurrentGearPayback();
         }
         if (document.getElementById("earned")) {
             document.getElementById("earned").innerHTML = "$" + (Math.round(this.btc * newval*100)/100);
@@ -165,7 +161,6 @@ function refreshData() {
         getNicehashBasic();
         getCoinbaseSavings();
         loadGear();
-        createProgressBars();
     }
     time = 30;
 }
@@ -571,12 +566,13 @@ function getGPUSummary() {
 function loadGear() {
     var currentGear = readTextFile("/btc/components/current.dat");
     var curP = document.getElementById("currentgear");
+    curP.innerHTML = "";
 
     var cur = currentGear.split(/\r?\n|\r/);
     var curTotal = 0.0;
     cur.forEach(function(gear) {
         var split = gear.split(",");
-        var text = "<br>" + split[0] + " ($" + split[1] + ")";
+        var text = split[0] + " ($" + split[1] + ")<br>";
         curTotal += parseFloat(split[1]);
         curP.innerHTML += text;
     });
@@ -584,6 +580,7 @@ function loadGear() {
 
     var futureGear = readTextFile("/btc/components/future.dat");
     var futP = document.getElementById("futuregear");
+    futP.innerHTML = "";
 
     var fut = futureGear.split(/\r?\n|\r/);
     fut.forEach(function(gear) {
@@ -596,6 +593,27 @@ function loadGear() {
         }
     });
 }
+function loadCurrentGearPayback() {
+    var currentGear = readTextFile("/btc/components/current.dat").split(/\r?\n|\r/);
+    var currentitem = [];
+    var earnedmoney = data.usd * data.btc;
+    var i = 0;
+
+    while (i < currentGear.length) {
+        currentitem = currentGear[i].split(",");
+        var currtotal = parseFloat(currentitem[1]);
+        if (earnedmoney >= currtotal) earnedmoney -= currtotal;
+        else break;
+        i++;
+    }
+
+    if (i !== currentGear.length) {
+        var perc = 100 - Math.round((earnedmoney / currentitem[1]) * 100)
+        document.getElementById("leftcomp").innerHTML = "$" + Math.round((currentitem[1] - earnedmoney)*100)/100 + " (" + perc + "%)";
+        document.getElementById("leftcomptitle").innerHTML = "Left ("+currentitem[0]+")";
+    } 
+}
+
 function readTextFile(file){
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
@@ -783,64 +801,7 @@ function createCoinDistributionChart() {
             });
             chart.render();
         });
-    }   
-}
-function createProgressBars() {
-    if (document.location.pathname =="/btc/components/" || (calls===2 || (calls>2  && calls % 2 === 0))) {
-    var bar = document.getElementById("paybackprogress");
-    var title = document.getElementById("paybacktitle");
-    var totalbar = document.getElementById("totalpaybackprogess");
-    var totaltitle = document.getElementById("totalpaybacktitle");
-
-    var earnedmoney = 0.0;
-
-    if (document.getElementById("totalusd")){
-        earnedmoney = data.btc * data.usd;
-    } else {
-        earnedmoney = window.localStorage.btcval;
-    }
-    
-    var totalearnedmoney = earnedmoney;
-
-    var currentGear = readTextFile("/btc/components/current.dat").split(/\r?\n|\r/);
-    var i = 0;
-    var currentitem;
-
-    var totalspent = 0.0;
-    while (i < currentGear.length) {
-        currentitem = currentGear[i].split(",");
-        var currtotal = parseFloat(currentitem[1]);
-        if (earnedmoney >= currtotal) earnedmoney -= currtotal;
-        else break;
-        i++;
-    }
-
-    currentGear.forEach(function(item) {
-        var currrrentitem = item.split(",");
-        totalspent += parseFloat(currrrentitem[1]);
-    });
-
-    if (i !== currentGear.length) {
-        bar.style.display = "";
-        title.style.display = "";
-        totalbar.style.display = "";
-        totaltitle.style.display = "";
-
-        bar.value = earnedmoney;
-        bar.max = currentitem[1];
-
-        title.innerHTML = "Progress towards " + currentitem[0];
-
-        totalbar.value = totalearnedmoney;
-        totalbar.max = totalspent;
-
-        if (currentitem[2] != 1) title.innerHTML += " " + currentitem[2];
-    } else {
-        bar.style.display = "none";
-        title.style.display = "none";
-    }
-}
-calls++;
+    }  
 }
 
 
@@ -961,5 +922,4 @@ function refreshmouseover() {
 }
 function resetrefresh() {
     document.getElementById("ttr").innerHTML = time + "s";
-
 }

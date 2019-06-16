@@ -26,6 +26,7 @@
         <div class="header sticky">
             <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
             <h1 id="title" class="headertext">Components</h1>
+            <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshData()" class="refreshtext">30s</h1>
         </div>
 
         <div class="side-nav" id="side-nav-container">
@@ -67,35 +68,26 @@
             <div class="contentright">
                 <div class="card-snapshot">
                     <div class="container">
-                        <p class="title card-snapshot-title">Left</p>
+                        <p class="title card-snapshot-title">Left (Overall)</p>
                         <h2 class="card-snapshot-data" id="left"></h2>
                     </div>
                 </div>
             </div>    
             <div class="dataright">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title" id="leftcomptitle">Left ()</p>
+                        <h2 class="card-snapshot-data" id="leftcomp"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="dataleft">
                 <div class="card">
                     <div class="container">
                         <h3>Current Gear</h3>
                         <p id="currentgear"></p>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="container">
-                        <h3>Payback Progress</h3>
-                        <div class="wrapper stats">
-                            <div class="dataright">
-                                <progress style="display: none;" id="paybackprogress"></progress>
-                                <h5 style="display: none;" id="paybacktitle" class="center">Progress towards</h5>
-                            </div>
-                            <div class="dataleft">
-                                <progress style="display: none;" id="totalpaybackprogess"></progress>
-                                <h5 style="display: none;" id="totalpaybacktitle" class="center">Total Progress</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dataleft">
                 <div class="card"> 
                     <div class="container">
                         <h3>Planned Upgrades</h3>
@@ -107,6 +99,8 @@
 
         <script>
             refreshData();
+            window.setInterval(refreshData, 30*1000);
+            window.setInterval(updateTimer, 1*1000);
         </script>
 
     </body>

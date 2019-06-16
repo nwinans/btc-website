@@ -155,6 +155,9 @@ img {
     padding-left: 8px;
 }
 
+p#currentgear, p#futuregear {
+    padding-top: 0px;
+}
 
 
 
