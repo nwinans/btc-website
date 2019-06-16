@@ -39,7 +39,7 @@
                         <li onclick="location.href='/btc/'"><img width="32px" height="32px" src="/btc/images/home.svg"></img><span class="nav">Dashboard</span></li>                        
                         <li onclick="location.href='/btc/coinbase/'"><img width="32px" height="32px" src="/btc/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
                         <li onclick="location.href='/btc/nicehash/'"><img width="32px" height="32px" src="/btc/images/mining.svg"></img><span class="nav">Nicehash</span></li>
-                        <li onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpuselected.svg"></img><span class="nav">GPU Info</span></li>
+                        <li class="selected" onclick="location.href='/btc/rigstats/'"><img width="32px" height="32px" src="/btc/images/gpuselected.svg"></img><span class="nav">GPU Info</span></li>
                         <li onclick="location.href='/btc/components/'"><img width="32px" height="32px" src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
                         <li onclick="location.href='/btc/changelog/'"><img width="32px" height="32px" src="/btc/images/checklist.svg"></img><span class="nav">Changelog</span></li>
                     </ul>
@@ -52,7 +52,7 @@
                 <div class="card-snapshot">
                     <div class="container">
                         <p class="title card-snapshot-title">GPU's</p>
-                        <h2 class="card-snapshot-data" id="gpucount">4</h2>
+                        <h2 class="card-snapshot-data" id="gpucount"></h2>
                     </div>
                 </div>
             </div>   
@@ -60,7 +60,7 @@
                 <div class="card-snapshot">
                     <div class="container">
                         <p class="title card-snapshot-title">Electricity Usage</p>
-                        <h2 class="card-snapshot-data" id="elecusage">520.6 W</h2>
+                        <h2 class="card-snapshot-data" id="elecusage"></h2>
                     </div>
                 </div>
             </div>
@@ -68,11 +68,19 @@
                 <div class="card-snapshot">
                     <div class="container">
                         <p class="title card-snapshot-title">Temperature Range</p>
-                        <h2 class="card-snapshot-data" id="temprange">70 - 85</h2>
+                        <h2 class="card-snapshot-data" id="temprange"></h2>
                     </div>
                 </div>
             </div>  
             <div class="dataright">
+                <div class="card-snapshot">
+                    <div class="container">
+                        <p class="title card-snapshot-title">Driver Version</p>
+                        <h2 class="card-snapshot-data" id="driverversion"></h2>
+                    </div>
+                </div>
+            </div>  
+            <div class="dataleft">
                 <div class="card">
                     <div class="container">
                         <h3 id="gpuinfotitle">Summary</h3>
@@ -86,9 +94,9 @@
                         </table>
                     </div>
                 </div>
-            </div>  
-            <div class="dataleft">
-                
+                <div class="details">
+
+                </div>
             </div>
         </div>
     

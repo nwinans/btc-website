@@ -46,7 +46,7 @@
                             src="/btc/images/gpu.svg"></img><span class="nav">GPU Info</span></li>
                     <li onclick="location.href='/btc/components/'"><img width="32px" height="32px"
                             src="/btc/images/motherboard.svg"></img><span class="nav">Components</span></li>
-                    <li onclick="location.href='/btc/changelog/'"><img width="32px" height="32px"
+                    <li class="selected" onclick="location.href='/btc/changelog/'"><img width="32px" height="32px"
                             src="/btc/images/checklistselected.svg"></img><span class="nav">Changelog</span></li>
                 </ul>
             </nav>
@@ -56,9 +56,10 @@
         <div class="contentleft">
             <div class="card">
                 <div class="container">
-                    <h3>Version 2.0 - XX/XX/20XX</h3>
+                    <h3>Version 2.0 - XX/XX/2019</h3>
                     <p>
-                        -Redesigned the layout, has 3 column snapshot and 2 column data and chart
+                        -Snapshot Layout, snapshots section at the top and a 2 column data and chart section beneath
+                        -Added refresh timer to header bar in all relevant pages
                     </p>
                 </div>
             </div>
@@ -220,7 +221,6 @@
                 <div class="container">
                     <h3>To-Do List</h3>
                     <p>
-                        -New color scheme/redesign<br>
                         -Get gpu, ram and hard drive power usage<br>
                         -Redo backend, fetch every nicehash and coinbase and store it in json file, will save data and
                         processing time on frontend

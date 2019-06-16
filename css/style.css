@@ -108,6 +108,9 @@ td.center {
     text-align: center;
 }
 
+li.selected {
+    background-color: var(--accent-color);
+}
 
 
 tr.striped:nth-child(even) {background-color: var(--accent-color);}
