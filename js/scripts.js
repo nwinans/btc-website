@@ -136,18 +136,18 @@ var data = {
 */
 function refreshData() {
     //delete cached data
-    if (document.location.pathname == "/btc/") {
+    if (document.location.pathname == "/") {
         getBitcoinPrice();
         getNicehashBasic();
         getNicehashWorkers();
         getNicehashAverageEarnings();
         createProfibilityChart();
         getCoinbaseSavings();
-    } else if (document.location.pathname == "/btc/coinbase/") {
+    } else if (document.location.pathname == "/coinbase/") {
         getBitcoinPrice();
         getCoinbaseSavings();
         getCoinbaseTransactions();
-    } else if (document.location.pathname == "/btc/nicehash/") {
+    } else if (document.location.pathname == "/nicehash/") {
         getBitcoinPrice();
         getNicehashBasic();
         getNicehashWorkers();
@@ -156,7 +156,7 @@ function refreshData() {
         createCoinDistributionChart();
         createProfibilityChart();
         getGPUData();
-    } else if (document.location.pathname == "/btc/components/") {
+    } else if (document.location.pathname == "/components/") {
         getBitcoinPrice();
         getNicehashBasic();
         getCoinbaseSavings();
@@ -165,7 +165,7 @@ function refreshData() {
     time = 30;
 }
 function refreshGPUData() {
-    if (document.location.pathname == "/btc/rigstats/") {
+    if (document.location.pathname == "/rigstats/") {
         getFullGPUData();
         getGPUSummary();
         time = 10;
@@ -405,7 +405,7 @@ function getCoinbaseTransactions() {
 */
 function getGPUData() {
     if (self.fetch) {
-        fetch('/btc/payload.json', {
+        fetch('/payload.json', {
             method: 'GET',
             cache: 'no-store'
         }).then(function(response) {
@@ -474,7 +474,7 @@ function getGPUData() {
 
 function getFullGPUData() {
     if (self.fetch) {
-        fetch('/btc/payload.json', {
+        fetch('/payload.json', {
             method: 'GET'
         }).then(function(response) {
             return response.json();
@@ -531,7 +531,7 @@ function getFullGPUData() {
 }
 function getGPUSummary() {
     if (self.fetch) {
-        fetch('/btc/payload.json', {
+        fetch('/payload.json', {
             method: 'GET'
         }).then(function(response) {
             return response.json();
@@ -564,7 +564,7 @@ function getGPUSummary() {
 ** Components Functions
 */
 function loadGear() {
-    var currentGear = readTextFile("/btc/components/current.dat");
+    var currentGear = readTextFile("/components/current.dat");
     var curP = document.getElementById("currentgear");
     curP.innerHTML = "";
 
@@ -578,7 +578,7 @@ function loadGear() {
     });
     document.getElementById("spent").innerHTML = "$" + + Math.round(curTotal*100)/100;
 
-    var futureGear = readTextFile("/btc/components/future.dat");
+    var futureGear = readTextFile("/components/future.dat");
     var futP = document.getElementById("futuregear");
     futP.innerHTML = "";
 
@@ -594,7 +594,7 @@ function loadGear() {
     });
 }
 function loadCurrentGearPayback() {
-    var currentGear = readTextFile("/btc/components/current.dat").split(/\r?\n|\r/);
+    var currentGear = readTextFile("/components/current.dat").split(/\r?\n|\r/);
     var currentitem = [];
     var earnedmoney = data.usd * data.btc;
     var i = 0;
