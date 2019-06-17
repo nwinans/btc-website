@@ -656,6 +656,7 @@ function createProfibilityChart() {
                 var series = [];
                 for (var i = json.result.past[j].data.length - 288 - ma30length; i < json.result.past[j].data.length; i++) {
                     var data = json.result.past[j].data[i];
+                    if (data == undefined) continue;
                     var profit = parseFloat(json.result.current[j].profitability)
                     if (Object.keys(data[1]).length != 0) {
                         var temp = {x: data[0] * 300000, y: parseFloat(data[1].a) * profit};
@@ -732,8 +733,8 @@ function createBalanceChart() {
                 var series = [];
                 for (var i = json.result.past[j].data.length - 288; i < json.result.past[j].data.length; i++) {
                     var data = json.result.past[j].data[i];
+                    if (data == undefined) continue;
                     var temp = {x: data[0] * 300000, y: parseFloat(data[2])};
-                    
                     if (total.length < 288) {
                         //first pass through, just add everything
                         total.push(temp);
