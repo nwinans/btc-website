@@ -28,7 +28,8 @@
     <div class="header sticky">
         <button class="side-nav-btn left" onclick="openNav()">&#9776;</button>
         <h1 id="title" class="headertext">Nicehash</h1>
-        <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshData()" class="refreshtext">30s</h1>
+        <h1 id="ttr" onmouseover="refreshmouseover()" onmouseout="resetrefresh()" onclick="refreshData()"
+            class="refreshtext">30s</h1>
     </div>
 
     <div class="side-nav" id="side-nav-container">
@@ -39,8 +40,8 @@
         <div class="navlinks">
             <nav>
                 <ul>
-                    <li onclick="location.href='/'"><img width="32px" height="32px"
-                            src="/images/home.svg"></img><span class="nav">Dashboard</span></li>
+                    <li onclick="location.href='/'"><img width="32px" height="32px" src="/images/home.svg"></img><span
+                            class="nav">Dashboard</span></li>
                     <li onclick="location.href='/coinbase/'"><img width="32px" height="32px"
                             src="/images/wallet.svg"></img><span class="nav">Coinbase</span></li>
                     <li class="selected" onclick="location.href='/nicehash/'"><img width="32px" height="32px"
@@ -154,9 +155,8 @@
     <script>
         refreshData();
         window.setInterval(refreshData, 30 * 1000);
-        window.setInterval(updateTimer,     1*1000);
+        window.setInterval(updateTimer, 1 * 1000);
     </script>
-
 </body>
 
 </html>

@@ -284,11 +284,14 @@ function getNicehashAverageEarnings() {
             var total = 0.0;
             var ma30length = 36; //3 hours, samples every 5 min
             for (var j = 0; j < json.result.past.length; j++) {
-                var profit = parseFloat(json.result.current[j].profitability)
+                var profit = parseFloat(json.result.current[j].profitability);
                 for (var i = json.result.past[j].data.length - ma30length; i < json.result.past[j].data.length; i++) {
                     var d = json.result.past[j].data[i];
+                    if (d == undefined) continue;
+                    if (d[0] * 300000 < new Date().getTime() - (ma30length)*5*60*1000) continue;
                     if (Object.keys(d[1]).length != 0) {
-                        total += parseInt(d[1].a) * profit;
+                        if (isNaN(parseFloat(d[1].a))) continue;
+                        total += parseFloat(d[1].a) * profit;
                     }                
                 }
             }
@@ -652,20 +655,22 @@ function createProfibilityChart() {
             var ma30 = [];
             var ma30graph = [];
             var ma30length = 12;
-            for (var j = 0; j < json.result.past.length; j++) {
+            for (var j = json.result.past.length - 1; j > 0; j--) {
                 var series = [];
-                for (var i = json.result.past[j].data.length - 288 - ma30length; i < json.result.past[j].data.length; i++) {
+                for (var i = json.result.past[j].data.length - (288 + ma30length); i < json.result.past[j].data.length; i++) {
                     var data = json.result.past[j].data[i];
                     if (data == undefined) continue;
-                    var profit = parseFloat(json.result.current[j].profitability)
+                    if (data[0] * 300000 < (new Date().getTime() - (288+ma30length)*5*60*1000)) continue;
+                    var profit = parseFloat(json.result.current[j].profitability);
                     if (Object.keys(data[1]).length != 0) {
+                        if (isNaN(parseFloat(data[1].a))) continue;
                         var temp = {x: data[0] * 300000, y: parseFloat(data[1].a) * profit};
                         series.push(temp);
                         if (total.length < 288 + ma30length) {
                             total.push(temp);
                         } else {
                             k = -(json.result.past[j].data.length - 288 - ma30length) + i;
-                            total[k] = {x: total[k].x, y: total[k].y + parseFloat(data[1].a) * profit}
+                            total[k] = {x: total[k].x, y: total[k].y + (parseFloat(data[1].a) * profit)}
                         }
                     } else {
                         var temp = {x: data[0] * 300000, y: 0};
@@ -729,11 +734,12 @@ function createBalanceChart() {
             });
             var total = [];
             var max = 0.0;
-            for (var j = 0; j < json.result.past.length; j++) {
+            for (var j = json.result.past.length - 1; j > 0; j--) {
                 var series = [];
                 for (var i = json.result.past[j].data.length - 288; i < json.result.past[j].data.length; i++) {
                     var data = json.result.past[j].data[i];
                     if (data == undefined) continue;
+                    if (data[0] * 300000 < new Date().getTime() - 288*5*60*1000) continue;
                     var temp = {x: data[0] * 300000, y: parseFloat(data[2])};
                     if (total.length < 288) {
                         //first pass through, just add everything
