@@ -1,0 +1,390 @@
+/* style.css
+** Style sheet for Bitcoin Mining info
+*/
+
+/*global tag changes */
+
+body {
+    margin: 0px;
+    background-color: lightslategray;
+    /*background-image: url(https://photos.gograph.com/thumbs/CSP/CSP990/k10294230.jpg);*/
+    margin-left: 250px;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    text-rendering: optimizelegibility;
+}
+
+h2, h3, h4, h5 {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+span {
+    font-family: 'Open Sans', sans-serif;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    font-family: 'Roboto', sans-serif;
+}
+
+th.title {
+    width: 40%;
+}
+
+td {
+    font-family: 'Open Sans', sans-serif;
+}
+
+progress {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+
+	border: none;
+	
+	/* Dimensions */
+	width: 100%;
+    height: 2.5em;
+    
+    border: solid #cccccc 8px;
+    border-radius: 10px;
+
+    color: darkslategray;
+
+    background-color: #cccccc;
+    background: #cccccc;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+li {
+    list-style-type: none;
+    margin: auto;
+    padding: 8px;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+/*global tag-class modifiers */
+h1.center {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+h5.center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+h3.center {
+    text-align: center;
+    vertical-align: center;
+}
+
+td.center {
+    text-align: center;
+}
+
+h1#title {
+    width: 100%;
+}
+
+tr.striped:nth-child(even) {background-color: #f2f2f2;}
+
+progress::-webkit-progress-bar {
+	background: #cccccc;
+}
+
+progress::-moz-progress-bar {
+	border-radius: 5px;
+	background-image: -moz-linear-gradient(
+        center bottom,
+        rgb(47,79,79) 0%,
+		rgb(119,136,153) 75%
+	);
+}
+
+progress::-webkit-progress-value {
+	border-radius: 10px;
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(47,79,79)),
+		color-stop(1, rgb(119,136,153))
+	);
+}
+
+span.nav {
+    font-family: 'Open Sans', sans-serif;
+    color: darkslategray;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 32px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+img {
+    padding-right: 16px;
+    padding-left: 8px;
+}
+
+
+
+
+/*classes*/
+.center {
+    margin: auto;
+    padding: 8px;
+}
+
+.card {
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.6);
+    transition: 0.3s;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background-color: white;
+}
+
+.card:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
+}
+
+.container {
+    padding: 2px 16px 16px 16px;
+}
+
+.changelogpadding{
+    padding: 2px 16px 16px 0px;
+}
+
+.header {
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.6);
+    /*background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%) !important;*/
+    background-color: darkslategray;
+    color: white;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.contentleft {
+    grid-area: left;
+    padding:8px;
+}
+
+.contentright {
+    padding: 8px;
+    grid-area: right;
+}
+
+.side-nav {
+    left: 0;
+    /*background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);*/
+    background-color: lightslategray;
+    overflow-x: hidden;
+    float: left;
+    position: fixed;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 4px 0px 4px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.appicon {
+    position: absolute;
+    bottom: 3.5em;
+    left: 0px;
+    width: 48px;
+    height: 48px;
+    padding-left: 16px;
+}
+
+.apptitle {
+    color: white;
+    text-align: left;
+    vertical-align: bottom;
+    position: absolute;
+    bottom: 0px;
+    padding-left: 16px;
+}
+
+.appnameheader {
+    top: 0px;
+    position: absolute;
+    height: 150px;
+    width: 100%;
+    background-color: darkslategray;
+}
+
+.navlinks {
+    position: absolute;
+    top: 150px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.wrapper {
+    padding-top: 86px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas:
+        "left right";
+}
+
+.headertext {
+    padding-left: 1em;
+}
+
+.card .wrapper {
+    padding-top: 0px;
+}
+
+.side-nav-btn {
+    display: none;
+    border-width: 0px;
+    font-size: 30px;
+    color: white;
+}
+
+.side-nav-btn.left {
+    float: left;
+    padding-left: 16px;
+    vertical-align: middle;
+    background-color: darkslategray;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.side-nav-btn.right {
+    float: right;
+    background-color: lightgray;
+}
+
+.side-nav li:hover {
+    background-color: lightgray;
+}
+
+.fifty {
+    width: 50%;
+    padding-top: 86px;
+}
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/*mobile*/
+@media only screen and (max-width: 1024px) {
+
+    .headertext {
+        margin-block-end: .5em;
+        margin-block-start: .5em;
+        padding-left: 2em;
+    }
+
+    h1.center {
+        margin-left: -48.95px;
+    }
+    .center {
+        margin: auto;
+    }
+
+    .side-nav {
+        left: -250px;
+        transition: 0.3s;
+    }
+
+    .card {
+        box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.6);
+        transition: 0.3s;
+        border-radius: 5px;
+        margin-bottom: 8px;
+    }
+
+    .card.margin {
+        margin-top: 78px;
+    }
+
+    .side-nav-btn {
+        display: block;
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
+
+    body {
+        cursor: pointer;
+        margin-left: 0px;
+    }
+    .wrapper {
+        padding-top: 5em;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-template-areas: 
+            "left right";
+    }
+}
+
+/* tablet */
+@media only screen and (max-width: 768px) {
+    .fifty {
+        width: 100%;
+        padding-top: 86px;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-template-areas: 
+            "left"
+            "right";
+    }
+}
+
+/*Fonts*/
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2)  format('woff2');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFUZ0bbck.woff2) format('woff2');
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
